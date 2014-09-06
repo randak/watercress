@@ -10,56 +10,32 @@ object Parser {
 //TODO  def parseString(css: String): List[Section]
 
   def parseFiles(dir: String): List[Section] = {
-    var inComment = false
+    var inBlock = false
     var prev: CommentType = CommentType.NONE
     var block: mutable.MutableList[String] = new mutable.MutableList[String]()
-
     var sections: mutable.MutableList[Section] = mutable.MutableList[Section]()
 
     new File(dir)
       .listFiles.toIterator
       .filter(_.isFile)
-      .flatMap(Source.fromFile(_).getLines)
+      .flatMap(Source.fromFile(_).getLines())
       .map( str => new Line(str) )
       .foreach{ line =>
-        prev match {
-          case CommentType.NONE => {
-            inComment = false
-            line.commentType match {
-              case CommentType.SINGLE | CommentType.MULTI_START => block = mutable.MutableList(line.suffix)
-              case _ =>
-            }
-          }
-          case CommentType.SINGLE => {
-            inComment = true
-            line.commentType match {
-              case CommentType.SINGLE => block += line.suffix
-              case _ => sections += makeSection(block); block = new mutable.MutableList[String]
-            }
-          }
-          case CommentType.MULTI_START => {
-            inComment = true
-            line.commentType match {
-              case CommentType.MULTI_MIDDLE | CommentType.NONE | CommentType.MULTI_END => block += line.suffix
-              case _ =>
-            }
-          }
-          case CommentType.MULTI_MIDDLE => {
-            inComment = true
-            line.commentType match {
-              case CommentType.MULTI_END => sections += makeSection(block); block = new mutable.MutableList[String]
-              case CommentType.MULTI_MIDDLE => block += line.suffix
-              case _ =>
-            }
-          }
-          case CommentType.MULTI_END => {
-            inComment = false
+        val cur = line.commentType
+        if(inBlock) {
+          if(cur.equals(CommentType.SINGLE) || cur.equals(CommentType.MULTI_MIDDLE)) {
+            block += line.suffix
+          } else if((cur.equals(CommentType.NONE) && prev.equals(CommentType.SINGLE))
+                    || cur.equals(CommentType.MULTI_END)) {
             sections += makeSection(block)
             block = new mutable.MutableList[String]
+            inBlock = false
           }
+        } else if(cur.equals(CommentType.SINGLE) || cur.equals(CommentType.MULTI_START)) {
+          block = mutable.MutableList(line.suffix)
+          inBlock = true
         }
-
-        prev = line.commentType
+        prev = cur
       }
 
     sections.toList
@@ -71,7 +47,7 @@ object Parser {
     b.size match {
       case 1 => new Section(b(0), "", List[Modifier]())
       case 2 => new Section(b(0), b(1), List[Modifier]())
-      case _ => {
+      case _ =>
         val modifiers: List[Modifier] = b.drop(2).map { _.split("""-""").map{_.trim} }
           .filter{ _.size > 0 }
           .map { modifier => modifier.size match {
@@ -81,7 +57,6 @@ object Parser {
           }.toList
 
         new Section(b(0), b(1), modifiers)
-      }
     }
   }
 }

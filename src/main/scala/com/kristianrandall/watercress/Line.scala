@@ -6,11 +6,11 @@ class Line(string: String) {
   def commentType: CommentType = {
     string match {
       case s if(s.matches("""^//(.*)""")) => CommentType.SINGLE
-      case s if(s.matches("""^/\*\*(.*)""")) => CommentType.MULTI_START
+      case s if(s.matches("""^/\*{1,2}(.*)""")) => CommentType.MULTI_START
       case s if(s.matches("""^\*/""")) => CommentType.MULTI_END
       case s if(s.matches("""^*(.*)""")) => CommentType.MULTI_MIDDLE
       case _ => CommentType.NONE
     }
   }
-  def suffix: String = "^(\\/{2}|\\/\\*{2}|\\*(\\/){0,1})".r.replaceAllIn(string, "").trim
+  def suffix: String = "^(\\/{2}|\\/\\*{1,2}|\\*(\\/){0,1})".r.replaceAllIn(string, "").trim
 }
