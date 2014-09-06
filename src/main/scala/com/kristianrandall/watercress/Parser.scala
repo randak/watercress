@@ -33,11 +33,6 @@ object Parser {
     * @return a List of [[Section]] instances
     */
   def parseFiles(dir: String): List[Section] = {
-    var inBlock = false
-    var prev: CommentType = CommentType.NONE
-    var block: mutable.MutableList[String] = new mutable.MutableList[String]()
-    var sections: mutable.MutableList[Section] = mutable.MutableList[Section]()
-
     val lines = new File(dir)
       .listFiles.toIterator
       .filter(_.isFile)
