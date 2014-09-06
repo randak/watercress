@@ -1,5 +1,13 @@
 Watercress - CHANGELOG
 
+0.3.0
+=====
+Added support for CSS string parsing
+
+- Parser now supports reading from a file or directly from a string of CSS
+- Added test support for CSS string parser
+- Fixed bug where lines were not trimmed of surrounding whitespace
+
 0.2.0
 =====
 Completed basic functionality

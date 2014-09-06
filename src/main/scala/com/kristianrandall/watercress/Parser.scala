@@ -8,7 +8,13 @@ import scala.math.Ordering.Implicits._
 
 object Parser {
 
-//TODO  def parseString(css: String): List[Section]
+  def parseString(css: String): List[Section] = {
+    val lines = css.split("\n")
+      .map(str => new Line(str.trim) )
+      .toIterator
+
+    parse(lines)
+  }
 
   def parseFiles(dir: String): List[Section] = {
     var inBlock = false
@@ -16,34 +22,14 @@ object Parser {
     var block: mutable.MutableList[String] = new mutable.MutableList[String]()
     var sections: mutable.MutableList[Section] = mutable.MutableList[Section]()
 
-    new File(dir)
+    val lines = new File(dir)
       .listFiles.toIterator
       .filter(_.isFile)
       .flatMap(Source.fromFile(_).getLines())
-      .map( str => new Line(str) )
-      .foreach{ line =>
-        val cur = line.commentType
-        if(inBlock) {
-          if(cur.equals(CommentType.SINGLE)
-              || cur.equals(CommentType.MULTI_MIDDLE)
-              || (cur.equals(CommentType.NONE) && !prev.equals(CommentType.SINGLE))) {
+      .map( str => new Line(str.trim) )
 
-            block += line.suffix
+    parse(lines)
 
-          } else if((cur.equals(CommentType.NONE) && prev.equals(CommentType.SINGLE))
-                    || cur.equals(CommentType.MULTI_END)) {
-            sections += makeSection(block)
-            block = new mutable.MutableList[String]
-            inBlock = false
-          }
-        } else if(cur.equals(CommentType.SINGLE) || cur.equals(CommentType.MULTI_START)) {
-          block = mutable.MutableList(line.suffix)
-          inBlock = true
-        }
-        prev = cur
-      }
-
-    sections.toList.sortBy(r => r.sectioning)
   }
 
   def makeSection(block: mutable.MutableList[String]): Section = {
@@ -87,11 +73,42 @@ object Parser {
     *   - xss.flatten == xs
     *   - No sublist in xss contains an element matching p in its tail
     */
-  def groupPrefix[T](xs: List[T])(p: T => Boolean): List[List[T]] = xs match {
+  private def groupPrefix[T](xs: List[T])(p: T => Boolean): List[List[T]] = xs match {
     case List() => List()
     case x :: xs1 =>
       val (ys, zs) = xs1 span (!p(_))
       (x :: ys) :: groupPrefix(zs)(p)
+  }
+
+  private def parse(css: Iterator[Line]): List[Section] = {
+    var inBlock = false
+    var prev: CommentType = CommentType.NONE
+    var block: mutable.MutableList[String] = new mutable.MutableList[String]()
+    var sections: mutable.MutableList[Section] = mutable.MutableList[Section]()
+
+    css.foreach { line =>
+      val cur = line.commentType
+      if(inBlock) {
+        if(cur.equals(CommentType.SINGLE)
+          || cur.equals(CommentType.MULTI_MIDDLE)
+          || (cur.equals(CommentType.NONE) && !prev.equals(CommentType.SINGLE))) {
+
+          block += line.suffix
+
+        } else if((cur.equals(CommentType.NONE) && prev.equals(CommentType.SINGLE))
+          || cur.equals(CommentType.MULTI_END)) {
+          sections += makeSection(block)
+          block = new mutable.MutableList[String]
+          inBlock = false
+        }
+      } else if(cur.equals(CommentType.SINGLE) || cur.equals(CommentType.MULTI_START)) {
+        block = mutable.MutableList(line.suffix)
+        inBlock = true
+      }
+      prev = cur
+    }
+
+    sections.toList.sortBy(r => r.sectioning)
   }
 }
 

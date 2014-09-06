@@ -50,5 +50,13 @@ class ParserSpec extends Specification {
       val sections = Parser.parseFiles("src/test/resources/misordered")
       sections(0).sectioning(0) must equalTo(1)
     }
+
+    "parse a CSS string" in {
+      val sections = Parser.parseString("/* @1.1 CSS Test File \n This is a CSS test file that I have concocted. \n */")
+      sections.size must equalTo(1)
+      sections(0).sectioning must equalTo(List(1,1))
+      sections(0).title must equalTo("CSS Test File")
+      sections(0).description must equalTo("<p>This is a CSS test file that I have concocted.</p>")
+    }
   }
 }
