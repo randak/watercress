@@ -72,7 +72,7 @@ object Parser {
 
           case s if s matches """@modifiers(.*)""" =>
             modifiers = subBlock.drop(1)
-              .map { _.split("""-""").map(_.trim) }
+              .map { _.split(""" - """).map(_.trim) }
               .filter(_.size > 0)
               .map { modifier =>
                 modifier.size match {
