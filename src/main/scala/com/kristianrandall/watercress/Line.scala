@@ -1,8 +1,14 @@
 package com.kristianrandall.watercress
 
+/** Represents a line of CSS.
+  *
+  * @param string a string to convert into a [[Line]]
+  */
 class Line(string: String) {
-  def isComment: Boolean = commentType.equals(CommentType.NONE)
-  def isSingle: Boolean = commentType.equals(CommentType.SINGLE)
+  /** Returns the line's [[CommentType]] using regex
+    *
+    * @return CommentType based on regex matching
+    */
   def commentType: CommentType = {
     string match {
       case s if s matches """^//(.*)""" => CommentType.SINGLE
@@ -12,5 +18,10 @@ class Line(string: String) {
       case _ => CommentType.NONE
     }
   }
+
+  /** Strips the comment identifier (// or /* or * or */) and returns the comment
+    *
+    * @return the text of the comment
+    */
   def suffix: String = "^(\\/{2}|\\/\\*{1,2}|\\*(\\/){0,1})".r.replaceAllIn(string, "").trim
 }

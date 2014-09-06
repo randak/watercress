@@ -6,8 +6,19 @@ import scala.collection.mutable
 import scala.io.Source
 import scala.math.Ordering.Implicits._
 
+/** Generates a list of style guide [[Section]] objects from CSS files.
+  *
+  * Parser may read sections from a string or from a directory,
+  * and will return an ordered list of [[Section]] instances based
+  * on their section numbering.
+  */
 object Parser {
 
+  /** Parses a CSS string into a list of [[Section]] instances.
+    *
+    * @param css a block of CSS with lines broken by \n
+    * @return a List of [[Section]] instances
+    */
   def parseString(css: String): List[Section] = {
     val lines = css.split("\n")
       .map(str => new Line(str.trim) )
@@ -16,6 +27,11 @@ object Parser {
     parse(lines)
   }
 
+  /** Parses all CSS/LESS/SASS files in a given directory.
+    *
+    * @param dir the directory in which to look for stylesheets
+    * @return a List of [[Section]] instances
+    */
   def parseFiles(dir: String): List[Section] = {
     var inBlock = false
     var prev: CommentType = CommentType.NONE
@@ -32,14 +48,17 @@ object Parser {
 
   }
 
-  def makeSection(block: mutable.MutableList[String]): Section = {
+  /** Helper that builds a section from a list of comment strings.
+    *
+    * @param block a list of strings that comprise a comment block
+    * @return a [[Section]] based on the comment block
+    */
+  private def makeSection(block: mutable.MutableList[String]): Section = {
     val b: List[List[String]] = groupPrefix(block.toList)(_ matches """^\s*$""").map(_.filter(!_.isEmpty))
 
     var sectioning = List[Int]()
-    var title = ""
-    var description = ""
+    var title, description, template = ""
     var modifiers = List[Modifier]()
-    var template = ""
 
     b.foreach { subBlock =>
         subBlock(0) match {
@@ -69,9 +88,14 @@ object Parser {
     new Section(sectioning, title, description, modifiers, template)
   }
 
-  /** Returns shortest possible list of lists xss such that
+  /** Helper that returns shortest possible list of lists xss such that
     *   - xss.flatten == xs
     *   - No sublist in xss contains an element matching p in its tail
+    *
+    * @param xs a list of items to parse
+    * @param p the pattern on which to split
+    * @tparam T the type
+    * @return a list of items broken into groups based on the pattern
     */
   private def groupPrefix[T](xs: List[T])(p: T => Boolean): List[List[T]] = xs match {
     case List() => List()
@@ -80,6 +104,11 @@ object Parser {
       (x :: ys) :: groupPrefix(zs)(p)
   }
 
+  /** Helper that does the parsing of the lines to make comment blocks.
+    *
+    * @param css an Iterator that contains every [[Line]] of CSS
+    * @return a list of [[Section]] instances sorted by section numbering
+    */
   private def parse(css: Iterator[Line]): List[Section] = {
     var inBlock = false
     var prev: CommentType = CommentType.NONE
@@ -112,6 +141,19 @@ object Parser {
   }
 }
 
+/** A style guide section that represents a parsed CSS comment block.
+  *
+  * @param sectioning section numbering (parsed from e.g. @1.1.1)
+  * @param title title of the style guide section
+  * @param description the description of the style guide section
+  * @param modifiers a list of [[Modifier]] instances to apply within the template
+  * @param template an HTML fragment indicating how to render the section
+  */
 case class Section(sectioning: List[Int], title: String, description: String, modifiers: List[Modifier], template: String)
 
+/** Modifier to append to the relevant CSS identifier
+  *
+  * @param name the modifier
+  * @param description a description of the modifier's expected behavior
+  */
 case class Modifier(name: String, description: String)

@@ -1,5 +1,9 @@
 Watercress - CHANGELOG
 
+0.3.2
+=====
+Added scaladoc support
+
 0.3.1
 =====
 Corrected version number in build.sbt
