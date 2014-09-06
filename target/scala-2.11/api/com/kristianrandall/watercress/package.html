@@ -1,0 +1,227 @@
+<!DOCTYPE html >
+<html>
+        <head>
+          <title>watercress - com.kristianrandall.watercress</title>
+          <meta name="description" content="watercress - com.kristianrandall.watercress" />
+          <meta name="keywords" content="watercress com.kristianrandall.watercress" />
+          <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+          
+      <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
+      <link href="../../../lib/diagrams.css" media="screen" type="text/css" rel="stylesheet" id="diagrams-css" />
+      <script type="text/javascript" src="../../../lib/jquery.js" id="jquery-js"></script>
+      <script type="text/javascript" src="../../../lib/jquery-ui.js"></script>
+      <script type="text/javascript" src="../../../lib/template.js"></script>
+      <script type="text/javascript" src="../../../lib/tools.tooltip.js"></script>
+      
+      <script type="text/javascript">
+         if(top === self) {
+            var url = '../../../index.html';
+            var hash = 'com.kristianrandall.watercress.package';
+            var anchor = window.location.hash;
+            var anchor_opt = '';
+            if (anchor.length >= 1)
+              anchor_opt = '@' + anchor.substring(1);
+            window.location.href = url + '#' + hash + anchor_opt;
+         }
+   	  </script>
+    
+        </head>
+        <body class="value">
+      <div id="definition">
+        <img src="../../../lib/package_big.png" />
+        <p id="owner"><a href="../../package.html" class="extype" name="com">com</a>.<a href="../package.html" class="extype" name="com.kristianrandall">kristianrandall</a></p>
+        <h1>watercress</h1> <span class="permalink">
+      <a href="../../../index.html#com.kristianrandall.watercress.package" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" />
+      </a>
+    </span>
+      </div>
+
+      <h4 id="signature" class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <span class="name">watercress</span>
+      </span>
+      </h4>
+      
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Provides a parser for stylesheets that can be used to generate a style guide that stays up
+to date with the CSS automatically.</p><p>The main class is <a href="Parser$.html" class="extype" name="com.kristianrandall.watercress.Parser">watercress.Parser</a>, which can be used as follows:</p><pre>scala&gt; <span class="kw">val</span> sections = watercress.Parser.parseFile(<span class="lit">"/link/to/directory"</span>)
+sections: <span class="std">List</span>[com.kristianrandall.watercress.Section]</pre><p>or</p><pre>scala&gt; <span class="kw">val</span> sections = watercress.Parser.parseText(<span class="lit">"css text"</span>)
+sections: <span class="std">List</span>[com.kristianrandall.watercress.Section]</pre></div><div class="toggleContainer block">
+          <span class="toggle">Linear Supertypes</span>
+          <div class="superTypes hiddenContent"><span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
+        </div></div>
+        
+
+      <div id="mbrsel">
+        <div id="textfilter"><span class="pre"></span><span class="input"><input id="mbrsel-input" type="text" accesskey="/" /></span><span class="post"></span></div>
+        <div id="order">
+              <span class="filtertype">Ordering</span>
+              <ol>
+                
+                <li class="alpha in"><span>Alphabetic</span></li>
+                <li class="inherit out"><span>By inheritance</span></li>
+              </ol>
+            </div>
+        <div id="ancestors">
+                <span class="filtertype">Inherited<br />
+                </span>
+                <ol id="linearization">
+                  <li class="in" name="com.kristianrandall.watercress"><span>watercress</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
+                </ol>
+              </div><div id="ancestors">
+            <span class="filtertype"></span>
+            <ol>
+              <li class="hideall out"><span>Hide All</span></li>
+              <li class="showall in"><span>Show all</span></li>
+            </ol>
+            <a href="http://docs.scala-lang.org/overviews/scaladoc/usage.html#members" target="_blank">Learn more about member selection</a>
+          </div>
+        <div id="visbl">
+            <span class="filtertype">Visibility</span>
+            <ol><li class="public in"><span>Public</span></li><li class="all out"><span>All</span></li></ol>
+          </div>
+      </div>
+
+      <div id="template">
+        <div id="allMembers">
+        
+
+        <div id="types" class="types members">
+              <h3>Type Members</h3>
+              <ol><li name="com.kristianrandall.watercress.CommentType" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="CommentTypeextendsEnum[com.kristianrandall.watercress.CommentType]"></a>
+      <a id="CommentType:CommentType"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="CommentType.html"><span class="name">CommentType</span></a><span class="result"> extends <span class="extype" name="java.lang.Enum">Enum</span>[<a href="CommentType.html" class="extype" name="com.kristianrandall.watercress.CommentType">CommentType</a>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#com.kristianrandall.watercress.package@CommentTypeextendsEnum[com.kristianrandall.watercress.CommentType]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" />
+      </a>
+    </span>
+      
+    </li><li name="com.kristianrandall.watercress.Line" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="LineextendsAnyRef"></a>
+      <a id="Line:Line"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="Line.html"><span class="name">Line</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#com.kristianrandall.watercress.package@LineextendsAnyRef" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Represents a line of CSS.</p>
+    </li><li name="com.kristianrandall.watercress.Modifier" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="ModifierextendsProductwithSerializable"></a>
+      <a id="Modifier:Modifier"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="Modifier.html"><span class="name">Modifier</span></a><span class="params">(<span name="name">name: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="description">description: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result"> extends <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#com.kristianrandall.watercress.package@ModifierextendsProductwithSerializable" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Modifier to append to the relevant CSS identifier
+</p><div class="fullcomment"><div class="comment cmt"><p>Modifier to append to the relevant CSS identifier
+</p></div><dl class="paramcmts block"><dt class="param">name</dt><dd class="cmt"><p>the modifier</p></dd><dt class="param">description</dt><dd class="cmt"><p>a description of the modifier's expected behavior
+</p></dd></dl></div>
+    </li><li name="com.kristianrandall.watercress.Section" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="SectionextendsProductwithSerializable"></a>
+      <a id="Section:Section"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="Section.html"><span class="name">Section</span></a><span class="params">(<span name="sectioning">sectioning: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Int">Int</span>]</span>, <span name="title">title: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="description">description: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="modifiers">modifiers: <span class="extype" name="scala.List">List</span>[<a href="Modifier.html" class="extype" name="com.kristianrandall.watercress.Modifier">Modifier</a>]</span>, <span name="template">template: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result"> extends <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#com.kristianrandall.watercress.package@SectionextendsProductwithSerializable" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">A style guide section that represents a parsed CSS comment block.</p><div class="fullcomment"><div class="comment cmt"><p>A style guide section that represents a parsed CSS comment block.
+</p></div><dl class="paramcmts block"><dt class="param">sectioning</dt><dd class="cmt"><p>section numbering (parsed from e.g. @1.1.1)</p></dd><dt class="param">title</dt><dd class="cmt"><p>title of the style guide section</p></dd><dt class="param">description</dt><dd class="cmt"><p>the description of the style guide section</p></dd><dt class="param">modifiers</dt><dd class="cmt"><p>a list of <a href="Modifier.html" class="extype" name="com.kristianrandall.watercress.Modifier">Modifier</a> instances to apply within the template</p></dd><dt class="param">template</dt><dd class="cmt"><p>an HTML fragment indicating how to render the section
+</p></dd></dl></div>
+    </li></ol>
+            </div>
+
+        
+
+        <div id="values" class="values members">
+              <h3>Value Members</h3>
+              <ol><li name="com.kristianrandall.watercress.Parser" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="Parser"></a>
+      <a id="Parser:Parser"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="Parser$.html"><span class="name">Parser</span></a>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#com.kristianrandall.watercress.package@Parser" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Generates a list of style guide <a href="Section.html" class="extype" name="com.kristianrandall.watercress.Section">Section</a> objects from CSS files.</p><div class="fullcomment"><div class="comment cmt"><p>Generates a list of style guide <a href="Section.html" class="extype" name="com.kristianrandall.watercress.Section">Section</a> objects from CSS files.</p><p>Parser may read sections from a string or from a directory,
+and will return an ordered list of <a href="Section.html" class="extype" name="com.kristianrandall.watercress.Section">Section</a> instances based
+on their section numbering.
+</p></div></div>
+    </li></ol>
+            </div>
+
+        
+
+        
+        </div>
+
+        <div id="inheritedMembers">
+        <div class="parent" name="scala.AnyRef">
+              <h3>Inherited from <span class="extype" name="scala.AnyRef">AnyRef</span></h3>
+            </div><div class="parent" name="scala.Any">
+              <h3>Inherited from <span class="extype" name="scala.Any">Any</span></h3>
+            </div>
+        
+        </div>
+
+        <div id="groupedMembers">
+        <div class="group" name="Ungrouped">
+              <h3>Ungrouped</h3>
+              
+            </div>
+        </div>
+
+      </div>
+
+      <div id="tooltip"></div>
+
+      <div id="footer">  </div>
+
+
+    </body>
+      </html>
