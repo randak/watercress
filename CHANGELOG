@@ -1,5 +1,17 @@
 Watercress - CHANGELOG
 
+0.2.0
+=====
+Completed basic functionality
+
+- Added sorting to sections to ensure they are in numerical order
+- Added support for @template and @modifiers sections
+- Added title field and split section number into more useful integers
+- Rewrote section building algorithm to be more robust
+- Fixed a bug where multiline comments without asterisks at start of middle lines did not work correctly
+- Fixed a bug where CommentType.MULTI_MIDDLE would match all
+- Added test support for multiline and single line comment blocks, comments spread over multiple files, and sorting of misordered comments
+
 0.1.1
 =====
 Updated parser

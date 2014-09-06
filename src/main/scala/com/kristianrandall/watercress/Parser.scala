@@ -4,6 +4,7 @@ import java.io.File
 
 import scala.collection.mutable
 import scala.io.Source
+import scala.math.Ordering.Implicits._
 
 object Parser {
 
@@ -23,8 +24,12 @@ object Parser {
       .foreach{ line =>
         val cur = line.commentType
         if(inBlock) {
-          if(cur.equals(CommentType.SINGLE) || cur.equals(CommentType.MULTI_MIDDLE)) {
+          if(cur.equals(CommentType.SINGLE)
+              || cur.equals(CommentType.MULTI_MIDDLE)
+              || (cur.equals(CommentType.NONE) && !prev.equals(CommentType.SINGLE))) {
+
             block += line.suffix
+
           } else if((cur.equals(CommentType.NONE) && prev.equals(CommentType.SINGLE))
                     || cur.equals(CommentType.MULTI_END)) {
             sections += makeSection(block)
@@ -38,29 +43,58 @@ object Parser {
         prev = cur
       }
 
-    sections.toList
+    sections.toList.sortBy(r => r.sectioning)
   }
 
   def makeSection(block: mutable.MutableList[String]): Section = {
-    val b = block.filter{!_.isEmpty}
+    val b: List[List[String]] = groupPrefix(block.toList)(_ matches """^\s*$""").map(_.filter(!_.isEmpty))
 
-    b.size match {
-      case 1 => new Section(b(0), "", List[Modifier]())
-      case 2 => new Section(b(0), b(1), List[Modifier]())
-      case _ =>
-        val modifiers: List[Modifier] = b.drop(2).map { _.split("""-""").map{_.trim} }
-          .filter{ _.size > 0 }
-          .map { modifier => modifier.size match {
-              case 1 => Modifier(modifier(0), "")
-              case _ => Modifier(modifier(0), modifier(1))
-            }
-          }.toList
+    var sectioning = List[Int]()
+    var title = ""
+    var description = ""
+    var modifiers = List[Modifier]()
+    var template = ""
 
-        new Section(b(0), b(1), modifiers)
-    }
+    b.foreach { subBlock =>
+        subBlock(0) match {
+          case s if s matches """^@(\d\.)*\d(.*)""" =>
+            sectioning = """\d+""".r.findAllIn(s).toList.map(_.toInt)
+            title = """^@(\d\.)*\d""".r.replaceAllIn(s, "").trim
+            description = "<p>" + subBlock.drop(1).mkString(" ") + "</p>"
+
+          case s if s matches """@template(.*)""" =>
+            template = subBlock.drop(1) mkString "\n"
+
+          case s if s matches """@modifiers(.*)""" =>
+            modifiers = subBlock.drop(1)
+              .map { _.split("""-""").map(_.trim) }
+              .filter(_.size > 0)
+              .map { modifier =>
+                modifier.size match {
+                  case 1 => Modifier(modifier(0), "")
+                  case _ => Modifier(modifier(0), modifier(1))
+                }
+              }
+
+          case s => description = description + "<p>" + s + "</p>"
+        }
+      }
+
+    new Section(sectioning, title, description, modifiers, template)
+  }
+
+  /** Returns shortest possible list of lists xss such that
+    *   - xss.flatten == xs
+    *   - No sublist in xss contains an element matching p in its tail
+    */
+  def groupPrefix[T](xs: List[T])(p: T => Boolean): List[List[T]] = xs match {
+    case List() => List()
+    case x :: xs1 =>
+      val (ys, zs) = xs1 span (!p(_))
+      (x :: ys) :: groupPrefix(zs)(p)
   }
 }
 
-case class Section(ref: String, description: String, modifiers: List[Modifier])
+case class Section(sectioning: List[Int], title: String, description: String, modifiers: List[Modifier], template: String)
 
 case class Modifier(name: String, description: String)

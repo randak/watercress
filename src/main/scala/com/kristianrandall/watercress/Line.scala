@@ -5,10 +5,10 @@ class Line(string: String) {
   def isSingle: Boolean = commentType.equals(CommentType.SINGLE)
   def commentType: CommentType = {
     string match {
-      case s if(s.matches("""^//(.*)""")) => CommentType.SINGLE
-      case s if(s.matches("""^/\*{1,2}(.*)""")) => CommentType.MULTI_START
-      case s if(s.matches("""^\*/""")) => CommentType.MULTI_END
-      case s if(s.matches("""^*(.*)""")) => CommentType.MULTI_MIDDLE
+      case s if s matches """^//(.*)""" => CommentType.SINGLE
+      case s if s matches """^/\*{1,2}(.*)""" => CommentType.MULTI_START
+      case s if s matches """^\*/""" => CommentType.MULTI_END
+      case s if s matches """^\*(.*)""" => CommentType.MULTI_MIDDLE
       case _ => CommentType.NONE
     }
   }
