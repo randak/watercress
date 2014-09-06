@@ -2,6 +2,8 @@ name := "Watercress"
 
 version := "0.3.2"
 
+organization := "com.kristianrandall"
+
 scalaVersion := "2.11.1"
 
 scalacOptions in (Compile,doc) ++= Seq("-groups", "-implicits")
