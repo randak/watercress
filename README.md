@@ -13,21 +13,21 @@ Basic Usage
 
 Using the parsed sections in a template is quite straightforward. These examples are using the Play! framework.
 
-In the controller:
+### In the controller:
 
 ```
 import com.kristianrandall.watercress._
 
 object Styleguide extends Controller {
   def styles() = Action { implicit request =>
-    val sections = Parser.parseFiles("app/assets/stylesheets/");
+    val sections = Parser.parseFiles("app/assets/stylesheets/")
 
     Ok(views.html.styleguide.style(sections))
   }
 }
 ```
 
-In the view:
+### In the view:
 
 ```
 @sections.map { section =>
