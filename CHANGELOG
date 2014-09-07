@@ -1,3 +1,9 @@
+0.5.1
+=====
+Closes #2
+
+- Resolved bug causing incorrect parsing of .class:pseudo-class modifier pattern
+
 0.5.0
 =====
 Modified template return type

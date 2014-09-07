@@ -168,7 +168,7 @@ case class Modifier(name: String, description: String) {
     *
     * @return A class name. If the modifier was a pseudo-class, it will be converted.
     */
-  def className = name.replace(".", " ").replace(":", "pseudo-class-").trim
+  def className = name.replace(".", " ").replace(":", " pseudo-class-").trim
 }
 
 case class Template(modifier: Modifier, raw: String) {
