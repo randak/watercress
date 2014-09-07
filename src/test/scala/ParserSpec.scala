@@ -35,8 +35,11 @@ class ParserSpec extends Specification {
       sections(0).sectioning(0) must equalTo(1)
       sections(0).title must equalTo("Buttons")
       sections(0).description must equalTo("<p>This is the buttons section</p><p>Here's a button</p>")
-      sections(0).modifiers must beEmpty
-      sections(0).template must equalTo("""<button class="{class}">Button (button.button)</button>"""+"\n"+"""<a href="#" class="button">Button (a.button)</a>""")
+      sections(0).modifiers.size must equalTo(1)
+      sections(0).modifiers(0).name must equalTo(":hover")
+      sections(0).modifiers(0).className must equalTo("pseudo-class-hover")
+      sections(0).template must equalTo("""<button class="{class}">Button (button.button)</button>"""+"\n"
+                                        +"""<a href="#" class="button {class}">Button (a.button)</a>""")
     }
 
     "parse comments in multiple files" in {
@@ -57,6 +60,14 @@ class ParserSpec extends Specification {
       sections(0).sectioning must equalTo(List(1,1))
       sections(0).title must equalTo("CSS Test File")
       sections(0).description must equalTo("<p>This is a CSS test file that I have concocted.</p>")
+    }
+
+    "generate a list of templates based on modifiers" in {
+      val sections = Parser.parseFiles("src/test/resources/less")
+      sections(0).renderTemplates(0) must equalTo("""<button class="">Button (button.button)</button>"""+"\n"
+                                                  +"""<a href="#" class="button ">Button (a.button)</a>""")
+      sections(0).renderTemplates(1) must equalTo("""<button class="pseudo-class-hover">Button (button.button)</button>"""+"\n"
+                                                  +"""<a href="#" class="button pseudo-class-hover">Button (a.button)</a>""")
     }
   }
 }

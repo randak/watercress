@@ -3,6 +3,7 @@ package com.kristianrandall.watercress
 import java.io.File
 
 import scala.collection.mutable
+import scala.collection.mutable.ListBuffer
 import scala.io.Source
 import scala.math.Ordering.Implicits._
 
@@ -144,11 +145,25 @@ object Parser {
   * @param modifiers a list of [[Modifier]] instances to apply within the template
   * @param template an HTML fragment indicating how to render the section
   */
-case class Section(sectioning: List[Int], title: String, description: String, modifiers: List[Modifier], template: String)
+case class Section(sectioning: List[Int], title: String, description: String, modifiers: List[Modifier], template: String) {
+
+  /** Generate a list of templates with the modifier class filled in.
+    *
+    * @return A list of strings that can be rendered as HTML
+    */
+  def renderTemplates: List[String] = {
+    val list: List[Modifier] = (ListBuffer[Modifier](Modifier("","")) ++= modifiers).toList
+    list.map{ m =>
+      template.replaceAllLiterally("{class}", m.className)
+    }
+  }
+}
 
 /** Modifier to append to the relevant CSS identifier
   *
   * @param name the modifier
   * @param description a description of the modifier's expected behavior
   */
-case class Modifier(name: String, description: String)
+case class Modifier(name: String, description: String) {
+  def className = name.replace(".", " ").replace(":", "pseudo-class-").trim
+}

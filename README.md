@@ -47,5 +47,3 @@ In the view:
   </div>
 }
 ```
-
-Templating support is not yet complete, but it will allow templates for each modifier to be automatically generated.

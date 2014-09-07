@@ -23,5 +23,5 @@ class Line(string: String) {
     *
     * @return the text of the comment
     */
-  def suffix: String = "^(\\/{2}|\\/\\*{1,2}|\\*(\\/){0,1})".r.replaceAllIn(string, "").trim
+  def suffix: String = """^\**/*\**""".r.replaceAllIn(string, "").trim
 }
