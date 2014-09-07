@@ -151,11 +151,9 @@ case class Section(sectioning: List[Int], title: String, description: String, mo
     *
     * @return A list of strings that can be rendered as HTML
     */
-  def renderTemplates: List[String] = {
+  def renderTemplates: List[Template] = {
     val list: List[Modifier] = (ListBuffer[Modifier](Modifier("","")) ++= modifiers).toList
-    list.map{ m =>
-      template.replaceAllLiterally("{class}", m.className)
-    }
+    list.map(m => Template(m, template))
   }
 }
 
@@ -165,5 +163,18 @@ case class Section(sectioning: List[Int], title: String, description: String, mo
   * @param description a description of the modifier's expected behavior
   */
 case class Modifier(name: String, description: String) {
+  /** Replace any pseudo classes with a real class name for style guide display.
+    * Also cleans any dots off the front of class names.
+    *
+    * @return A class name. If the modifier was a pseudo-class, it will be converted.
+    */
   def className = name.replace(".", " ").replace(":", "pseudo-class-").trim
+}
+
+case class Template(modifier: Modifier, raw: String) {
+  /** Insert the modifier into the raw template.
+    *
+    * @return A processed HTML fragment
+    */
+  def html: String = raw.replaceAllLiterally("{class}", modifier.className)
 }

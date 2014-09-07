@@ -64,10 +64,19 @@ class ParserSpec extends Specification {
 
     "generate a list of templates based on modifiers" in {
       val sections = Parser.parseFiles("src/test/resources/less")
-      sections(0).renderTemplates(0) must equalTo("""<button class="">Button (button.button)</button>"""+"\n"
-                                                  +"""<a href="#" class="button ">Button (a.button)</a>""")
-      sections(0).renderTemplates(1) must equalTo("""<button class="pseudo-class-hover">Button (button.button)</button>"""+"\n"
-                                                  +"""<a href="#" class="button pseudo-class-hover">Button (a.button)</a>""")
+
+      sections(0).renderTemplates(0).modifier.name must equalTo("")
+      sections(0).renderTemplates(0).html must equalTo("""<button class="">Button (button.button)</button>"""+"\n"
+                                                      +"""<a href="#" class="button ">Button (a.button)</a>""")
+
+      sections(0).renderTemplates(1).modifier.name must equalTo(":hover")
+      sections(0).renderTemplates(1).html must equalTo("""<button class="pseudo-class-hover">Button (button.button)</button>"""+"\n"
+                                                      +"""<a href="#" class="button pseudo-class-hover">Button (a.button)</a>""")
+
+      //      sections(0).renderTemplates(0). must equalTo("""<button class="">Button (button.button)</button>"""+"\n"
+//                                                  +"""<a href="#" class="button ">Button (a.button)</a>""")
+//      sections(0).renderTemplates(1) must equalTo("""<button class="pseudo-class-hover">Button (button.button)</button>"""+"\n"
+//                                                  +"""<a href="#" class="button pseudo-class-hover">Button (a.button)</a>""")
     }
   }
 }
