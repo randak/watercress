@@ -3,7 +3,6 @@ package com.kristianrandall.watercress
 import java.io.File
 
 import scala.collection.mutable
-import scala.collection.mutable.ListBuffer
 import scala.io.Source
 import scala.math.Ordering.Implicits._
 
@@ -135,46 +134,4 @@ object Parser {
 
     sections.toList.sortBy(r => r.sectioning)
   }
-}
-
-/** A style guide section that represents a parsed CSS comment block.
-  *
-  * @param sectioning section numbering (parsed from e.g. @1.1.1)
-  * @param title title of the style guide section
-  * @param description the description of the style guide section
-  * @param modifiers a list of [[Modifier]] instances to apply within the template
-  * @param template an HTML fragment indicating how to render the section
-  */
-case class Section(sectioning: List[Int], title: String, description: String, modifiers: List[Modifier], template: String) {
-
-  /** Generate a list of templates with the modifier class filled in.
-    *
-    * @return A list of strings that can be rendered as HTML
-    */
-  def renderTemplates: List[Template] = {
-    val list: List[Modifier] = (ListBuffer[Modifier](Modifier("","")) ++= modifiers).toList
-    list.map(m => Template(m, template))
-  }
-}
-
-/** Modifier to append to the relevant CSS identifier
-  *
-  * @param name the modifier
-  * @param description a description of the modifier's expected behavior
-  */
-case class Modifier(name: String, description: String) {
-  /** Replace any pseudo classes with a real class name for style guide display.
-    * Also cleans any dots off the front of class names.
-    *
-    * @return A class name. If the modifier was a pseudo-class, it will be converted.
-    */
-  def className = name.replace(".", " ").replace(":", " pseudo-class-").trim
-}
-
-case class Template(modifier: Modifier, raw: String) {
-  /** Insert the modifier into the raw template.
-    *
-    * @return A processed HTML fragment
-    */
-  def html: String = raw.replaceAllLiterally("{class}", modifier.className)
 }
