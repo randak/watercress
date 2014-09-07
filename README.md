@@ -67,7 +67,7 @@ object StyleGuide extends Controller {
 @(sections: List[com.kristianrandall.watercress.Section])(implicit request: RequestHeader)
 
 @main("Style Guide") {
-    <h1>EVIDENCE.com Style Guide</h1>
+    <h1>Style Guide</h1>
     <p>This guide is generated using <a href="https://github.com/randak/watercress/">Watercress</a>, a CSS documentation tool.</p>
     <ol>
       @overview.map { section =>
