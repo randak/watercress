@@ -21,5 +21,9 @@ case class Section(numbering: Vector[Int], title: String, description: String, m
     list.map(m => Template(m, template))
   }
 
+  /** Fetches the page of the current document (the top level section number)
+    *
+    * @return The document's page number
+    */
   def page: Int = numbering.head
 }
