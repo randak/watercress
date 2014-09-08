@@ -4,13 +4,13 @@ import scala.collection.mutable.ListBuffer
 
 /** A style guide section that represents a parsed CSS comment block.
   *
-  * @param sectioning section numbering (parsed from e.g. @1.1.1)
+  * @param numbering section numbering (parsed from e.g. @1.1.1)
   * @param title title of the style guide section
   * @param description the description of the style guide section
   * @param modifiers a list of [[Modifier]] instances to apply within the template
   * @param template an HTML fragment indicating how to render the section
   */
-case class Section(sectioning: List[Int], title: String, description: String, modifiers: List[Modifier], template: String) {
+case class Section(numbering: Vector[Int], title: String, description: String, modifiers: Vector[Modifier], template: String) {
 
   /** Generate a list of templates with the modifier class filled in.
     *

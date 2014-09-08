@@ -1,3 +1,14 @@
+0.6.0
+=====
+Heavy refactoring to simplify internal functions
+
+- Removed CommentType and Line classes
+- Refactored line-by-line looping with regex to find a comment block
+- Refactored block parsing logic with regex to match comment subsection
+- Changed sectioning to numbering in Section class
+- Changed Lists to Vectors
+- Description no longer converted to HTML
+
 0.5.1
 =====
 Closes #2
