@@ -20,4 +20,6 @@ case class Section(numbering: Vector[Int], title: String, description: String, m
     val list: List[Modifier] = (ListBuffer[Modifier](Modifier("","")) ++= modifiers).toList
     list.map(m => Template(m, template))
   }
+
+  def page: Int = numbering.head
 }
