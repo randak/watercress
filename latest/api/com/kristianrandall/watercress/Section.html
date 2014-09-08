@@ -43,12 +43,12 @@
         <span class="kind">case class</span>
       </span>
       <span class="symbol">
-        <span class="name">Section</span><span class="params">(<span name="sectioning">sectioning: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Int">Int</span>]</span>, <span name="title">title: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="description">description: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="modifiers">modifiers: <span class="extype" name="scala.List">List</span>[<a href="Modifier.html" class="extype" name="com.kristianrandall.watercress.Modifier">Modifier</a>]</span>, <span name="template">template: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result"> extends <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <span class="name">Section</span><span class="params">(<span name="numbering">numbering: <span class="extype" name="scala.Vector">Vector</span>[<span class="extype" name="scala.Int">Int</span>]</span>, <span name="title">title: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="description">description: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="modifiers">modifiers: <span class="extype" name="scala.Vector">Vector</span>[<a href="Modifier.html" class="extype" name="com.kristianrandall.watercress.Modifier">Modifier</a>]</span>, <span name="template">template: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result"> extends <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       </h4>
       
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>A style guide section that represents a parsed CSS comment block.
-</p></div><dl class="paramcmts block"><dt class="param">sectioning</dt><dd class="cmt"><p>section numbering (parsed from e.g. @1.1.1)</p></dd><dt class="param">title</dt><dd class="cmt"><p>title of the style guide section</p></dd><dt class="param">description</dt><dd class="cmt"><p>the description of the style guide section</p></dd><dt class="param">modifiers</dt><dd class="cmt"><p>a list of <a href="Modifier.html" class="extype" name="com.kristianrandall.watercress.Modifier">Modifier</a> instances to apply within the template</p></dd><dt class="param">template</dt><dd class="cmt"><p>an HTML fragment indicating how to render the section
+</p></div><dl class="paramcmts block"><dt class="param">numbering</dt><dd class="cmt"><p>section numbering (parsed from e.g. @1.1.1)</p></dd><dt class="param">title</dt><dd class="cmt"><p>title of the style guide section</p></dd><dt class="param">description</dt><dd class="cmt"><p>the description of the style guide section</p></dd><dt class="param">modifiers</dt><dd class="cmt"><p>a list of <a href="Modifier.html" class="extype" name="com.kristianrandall.watercress.Modifier">Modifier</a> instances to apply within the template</p></dd><dt class="param">template</dt><dd class="cmt"><p>an HTML fragment indicating how to render the section
 </p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
@@ -95,7 +95,7 @@
         <div id="constructors" class="members">
               <h3>Instance Constructors</h3>
               <ol><li name="com.kristianrandall.watercress.Section#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="&lt;init&gt;(sectioning:List[Int],title:String,description:String,modifiers:List[com.kristianrandall.watercress.Modifier],template:String):com.kristianrandall.watercress.Section"></a>
+      <a id="&lt;init&gt;(numbering:Vector[Int],title:String,description:String,modifiers:Vector[com.kristianrandall.watercress.Modifier],template:String):com.kristianrandall.watercress.Section"></a>
       <a id="&lt;init&gt;:Section"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -103,14 +103,14 @@
         <span class="kind">new</span>
       </span>
       <span class="symbol">
-        <span class="name">Section</span><span class="params">(<span name="sectioning">sectioning: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Int">Int</span>]</span>, <span name="title">title: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="description">description: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="modifiers">modifiers: <span class="extype" name="scala.List">List</span>[<a href="Modifier.html" class="extype" name="com.kristianrandall.watercress.Modifier">Modifier</a>]</span>, <span name="template">template: <span class="extype" name="scala.Predef.String">String</span></span>)</span>
+        <span class="name">Section</span><span class="params">(<span name="numbering">numbering: <span class="extype" name="scala.Vector">Vector</span>[<span class="extype" name="scala.Int">Int</span>]</span>, <span name="title">title: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="description">description: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="modifiers">modifiers: <span class="extype" name="scala.Vector">Vector</span>[<a href="Modifier.html" class="extype" name="com.kristianrandall.watercress.Modifier">Modifier</a>]</span>, <span name="template">template: <span class="extype" name="scala.Predef.String">String</span></span>)</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#com.kristianrandall.watercress.Section@&lt;init&gt;(sectioning:List[Int],title:String,description:String,modifiers:List[com.kristianrandall.watercress.Modifier],template:String):com.kristianrandall.watercress.Section" title="Permalink" target="_top">
+      <a href="../../../index.html#com.kristianrandall.watercress.Section@&lt;init&gt;(numbering:Vector[Int],title:String,description:String,modifiers:Vector[com.kristianrandall.watercress.Modifier],template:String):com.kristianrandall.watercress.Section" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" />
       </a>
     </span>
-      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sectioning</dt><dd class="cmt"><p>section numbering (parsed from e.g. @1.1.1)</p></dd><dt class="param">title</dt><dd class="cmt"><p>title of the style guide section</p></dd><dt class="param">description</dt><dd class="cmt"><p>the description of the style guide section</p></dd><dt class="param">modifiers</dt><dd class="cmt"><p>a list of <a href="Modifier.html" class="extype" name="com.kristianrandall.watercress.Modifier">Modifier</a> instances to apply within the template</p></dd><dt class="param">template</dt><dd class="cmt"><p>an HTML fragment indicating how to render the section
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">numbering</dt><dd class="cmt"><p>section numbering (parsed from e.g. @1.1.1)</p></dd><dt class="param">title</dt><dd class="cmt"><p>title of the style guide section</p></dd><dt class="param">description</dt><dd class="cmt"><p>the description of the style guide section</p></dd><dt class="param">modifiers</dt><dd class="cmt"><p>a list of <a href="Modifier.html" class="extype" name="com.kristianrandall.watercress.Modifier">Modifier</a> instances to apply within the template</p></dd><dt class="param">template</dt><dd class="cmt"><p>an HTML fragment indicating how to render the section
 </p></dd></dl></div>
     </li></ol>
             </div>
@@ -457,18 +457,18 @@
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
     </li><li name="com.kristianrandall.watercress.Section#modifiers" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="modifiers:List[com.kristianrandall.watercress.Modifier]"></a>
-      <a id="modifiers:List[Modifier]"></a>
+      <a id="modifiers:Vector[com.kristianrandall.watercress.Modifier]"></a>
+      <a id="modifiers:Vector[Modifier]"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">val</span>
       </span>
       <span class="symbol">
-        <span class="name">modifiers</span><span class="result">: <span class="extype" name="scala.List">List</span>[<a href="Modifier.html" class="extype" name="com.kristianrandall.watercress.Modifier">Modifier</a>]</span>
+        <span class="name">modifiers</span><span class="result">: <span class="extype" name="scala.Vector">Vector</span>[<a href="Modifier.html" class="extype" name="com.kristianrandall.watercress.Modifier">Modifier</a>]</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#com.kristianrandall.watercress.Section@modifiers:List[com.kristianrandall.watercress.Modifier]" title="Permalink" target="_top">
+      <a href="../../../index.html#com.kristianrandall.watercress.Section@modifiers:Vector[com.kristianrandall.watercress.Modifier]" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" />
       </a>
     </span>
@@ -524,6 +524,23 @@
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="com.kristianrandall.watercress.Section#numbering" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="numbering:Vector[Int]"></a>
+      <a id="numbering:Vector[Int]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">numbering</span><span class="result">: <span class="extype" name="scala.Vector">Vector</span>[<span class="extype" name="scala.Int">Int</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#com.kristianrandall.watercress.Section@numbering:Vector[Int]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">section numbering (parsed from e.</p><div class="fullcomment"><div class="comment cmt"><p>section numbering (parsed from e.g. @1.1.1)</p></div></div>
     </li><li name="com.kristianrandall.watercress.Section#renderTemplates" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="renderTemplates:List[com.kristianrandall.watercress.Template]"></a>
       <a id="renderTemplates:List[Template]"></a>
@@ -543,23 +560,6 @@
       <p class="shortcomment cmt">Generate a list of templates with the modifier class filled in.</p><div class="fullcomment"><div class="comment cmt"><p>Generate a list of templates with the modifier class filled in.
 </p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>A list of strings that can be rendered as HTML
 </p></dd></dl></div>
-    </li><li name="com.kristianrandall.watercress.Section#sectioning" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="sectioning:List[Int]"></a>
-      <a id="sectioning:List[Int]"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">val</span>
-      </span>
-      <span class="symbol">
-        <span class="name">sectioning</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Int">Int</span>]</span>
-      </span>
-      </h4><span class="permalink">
-      <a href="../../../index.html#com.kristianrandall.watercress.Section@sectioning:List[Int]" title="Permalink" target="_top">
-        <img src="../../../lib/permalink.png" />
-      </a>
-    </span>
-      <p class="shortcomment cmt">section numbering (parsed from e.</p><div class="fullcomment"><div class="comment cmt"><p>section numbering (parsed from e.g. @1.1.1)</p></div></div>
     </li><li name="scala.AnyRef#synchronized" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="synchronized[T0](x$1:=&gt;T0):T0"></a>
       <a id="synchronized[T0](⇒T0):T0"></a>
